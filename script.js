@@ -1,35 +1,80 @@
 let map;
-let pickupAutocomplete;
-let dropoffAutocomplete;
+let pickupMarker = null;
+let dropoffMarker = null;
+let isSelectingPickup = true; // Toggle between pickup and dropoff selection
 
 function initMap() {
-  // Initialize the map
-  map = new google.maps.Map(document.getElementById("map"), {
-    center: { lat: -34.397, lng: 150.644 },
-    zoom: 8,
-  });
+  // Get the user's current location
+  navigator.geolocation.getCurrentPosition(
+    (position) => {
+      const userLocation = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude,
+      };
 
-  // Initialize Autocomplete for pickup location
-  const pickupInput = document.createElement("input");
-  pickupInput.setAttribute("placeholder", "Enter pickup location");
-  pickupInput.setAttribute("id", "pickupInput");
-  document.getElementById("pickupContainer").appendChild(pickupInput);
+      // Initialize the map centered on the user's location
+      map = new google.maps.Map(document.getElementById("map"), {
+        center: userLocation,
+        zoom: 14,
+      });
 
-  pickupAutocomplete = new google.maps.places.Autocomplete(pickupInput);
-  pickupAutocomplete.addListener("place_changed", () => {
-    const place = pickupAutocomplete.getPlace();
-    console.log("Pickup location:", place);
-  });
+      // Add a click listener to the map
+      map.addListener("click", (event) => {
+        handleMapClick(event.latLng);
+      });
+    },
+    () => {
+      // Handle location access error
+      updateInstructions("Unable to access your location. Please enable location services.");
+    }
+  );
+}
 
-  // Initialize Autocomplete for dropoff location
-  const dropoffInput = document.createElement("input");
-  dropoffInput.setAttribute("placeholder", "Enter dropoff location");
-  dropoffInput.setAttribute("id", "dropoffInput");
-  document.getElementById("dropoffContainer").appendChild(dropoffInput);
+// Handle map click to select pickup or dropoff location
+function handleMapClick(latLng) {
+  const geocoder = new google.maps.Geocoder();
 
-  dropoffAutocomplete = new google.maps.places.Autocomplete(dropoffInput);
-  dropoffAutocomplete.addListener("place_changed", () => {
-    const place = dropoffAutocomplete.getPlace();
-    console.log("Dropoff location:", place);
+  geocoder.geocode({ location: latLng }, (results, status) => {
+    if (status === "OK" && results[0]) {
+      const address = results[0].formatted_address;
+
+      if (isSelectingPickup) {
+        // Set pickup marker
+        if (pickupMarker) pickupMarker.setMap(null); // Remove existing marker
+        pickupMarker = new google.maps.Marker({
+          position: latLng,
+          map: map,
+          title: "Pickup Location",
+        });
+
+        updateInstructions(`Pickup location set to: ${address}`);
+        document.getElementById("pickupLocation").textContent = address;
+      } else {
+        // Set dropoff marker
+        if (dropoffMarker) dropoffMarker.setMap(null); // Remove existing marker
+        dropoffMarker = new google.maps.Marker({
+          position: latLng,
+          map: map,
+          title: "Dropoff Location",
+        });
+
+        updateInstructions(`Dropoff location set to: ${address}`);
+        document.getElementById("dropoffLocation").textContent = address;
+      }
+
+      // Toggle between pickup and dropoff selection
+      isSelectingPickup = !isSelectingPickup;
+    } else {
+      updateInstructions("Unable to determine address for the selected location.");
+    }
   });
 }
+
+function updateInstructions(message) {
+  const instructions = document.getElementById("instructions");
+  instructions.textContent = message;
+  instructions.classList.add("highlight-instructions");
+}
+
+// Call the initMap function when the page loads
+window.onload = initMap;

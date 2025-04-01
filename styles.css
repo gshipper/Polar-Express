@@ -110,3 +110,15 @@ button:hover {
   width: 100px; /* or whatever size looks best */
   height: auto;
 }
+
+#instructions {
+  font-size: 1.5rem; /* Larger text */
+  font-weight: bold; /* Bold font */
+  color: #ffffff; /* White text */
+  background-color: #007bff; /* Blue background */
+  padding: 10px; /* Add padding for better readability */
+  border-radius: 5px; /* Rounded corners */
+  text-align: center; /* Center-align the text */
+  margin: 20px 0; /* Add spacing around the instructions */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+}
