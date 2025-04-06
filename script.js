@@ -17,3 +17,13 @@ document.getElementById('scheduleButton').addEventListener('click', function () 
     alert('Please fill out all fields.');
   }
 });
+
+document.getElementById('reset-button').addEventListener('click', function () {
+  document.getElementById('pickup').value = '';
+  document.getElementById('dropoff').value = '';
+  document.getElementById('date').value = '';
+  document.getElementById('time').value = '';
+  document.getElementById('passengers').value = '';
+
+  document.getElementById('rideDetails').classList.add('hidden');
+});
