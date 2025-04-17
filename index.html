@@ -23,8 +23,17 @@
       <button class="schedule-button" onclick="location.href='schedulepage.html'"> Schedule Your Ride Now! </button>
     </div>
     <div class="security-button-wrapper">
-      <button class="security-button" onclick="location.href='_____________________'"> 📞 Bowdoin Security </button>
+      <button class="security-button" onclick="showSecurity()"> 📞 Bowdoin Security </button>
     </div>
   </div>
+    <!-- Security Confirmation-->
+    <div id="security-call" class="modal">
+      <div class="modal-content">
+        <p>Are you sure you want to call Bowdoin Security?</p>
+        <button id="confirm-yes">Yes</button>
+        <button id="confirm-no">No</button>
+      </div>
+    </div>
+    <script src="main.js"></script>
 </body>
 </html>
