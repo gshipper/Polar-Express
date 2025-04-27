@@ -3,39 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Home - Polar Express</title>
-  <link rel="stylesheet" href="styles.css">
+  <title>Login</title>
+  <link rel="stylesheet" href="loginStyles.css">
 </head>
 <body>
-  <div class="container">
-    <div class = "home-button">
-      <button onclick="location.href='home.html'">Logout</button>
-    </div>
-    <div class="title-row">
-      <img src="https://upload.wikimedia.org/wikipedia/en/thumb/0/07/Bowdoin_Polar_Bears_Logo.svg/1200px-Bowdoin_Polar_Bears_Logo.svg.png" alt="Left Image" class="logo-image">
-      <h1>Polar Express</h1>
-      <img src="https://upload.wikimedia.org/wikipedia/en/thumb/0/07/Bowdoin_Polar_Bears_Logo.svg/1200px-Bowdoin_Polar_Bears_Logo.svg.png" alt="Right Image" class="logo-image">
-    </div>
-
-    <div class="button-row">
-      <button onclick="location.href='profile.html'">My Profile</button>
-      <button onclick="location.href='calendar.html'">Calendar</button>
-    </div>
-    <div class="schedule-button-wrapper">
-        <button class="schedule-button" onclick="location.href='schedulepage.html'"> Schedule a Ride</button>
-      </div>
-    <div class="security-button-wrapper">
-      <button class="security-button" onclick="showSecurity()"> 📞 Bowdoin Security </button>
-    </div>
+  <div class="login-container">
+    <h2>Login</h2>
+    <form id="loginForm">
+      <input type="email" id="email" placeholder="Email" required />
+      <input type="password" id="password" placeholder="Password" required />
+      <button type="submit">Login</button>
+    </form>
+    <p id="errorMessage" style="color: red; display: none;"></p>
+    <button id="registerButton" onclick="redirectToRegister()">Register</button>
   </div>
-    <!-- Security Confirmation-->
-    <div id="security-call" class="modal">
-      <div class="modal-content">
-        <p>Are you sure you want to call Bowdoin Security?</p>
-        <button id="confirm-yes">Yes</button>
-        <button id="confirm-no">No</button>
-      </div>
-    </div>
-    <script src="main.js"></script>
+  <script src="login.js"></script>
 </body>
 </html>

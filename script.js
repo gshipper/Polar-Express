@@ -95,4 +95,52 @@ document.getElementById('reset-button').addEventListener('click', () => {
   document.getElementById("timeError").textContent = "";
 });
 
+document.getElementById('scheduleButton').addEventListener('click', () => {
+
+  const pickupLocation = document.getElementById('pickup').value;
+  const dropoffLocation = document.getElementById('dropoff').value;
+
+  // Validation: Ensure pickup and dropoff locations are not the same
+  if (pickupLocation === dropoffLocation) {
+      alert('Pickup and dropoff locations cannot be the same.');
+      return; // Stop execution if validation fails
+  }
+   
+    // Making sure that the user is logged in and extracting their email for their user id
+    const email = localStorage.getItem('email');
+    const userid = email.split('@')[0];
+
+    
+    // Creating the ride data object
+    const rideData = {
+      user_id: userid,
+      pickup_location: pickupLocation,
+      dropoff_location: dropoffLocation,
+      ride_date: document.getElementById('date').value,
+      ride_time: document.getElementById('time').value,
+      passengers: document.getElementById('passengers').value,
+    };
+    
+    // Sending the ride data to the server
+    fetch('http://localhost:3000/api/rides', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(rideData),
+    })
+      .then((response) => {
+        if (response.ok) {
+          alert('Ride scheduled successfully!');
+        } else {
+          alert('Failed to schedule ride. Please try again.');
+        }
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+        alert('An error occurred. Please try again.');
+      });
+  
+});
+
 window.onload = initAutocomplete;
