@@ -8,6 +8,13 @@ registerForm.addEventListener('submit', async (e) => {
   const last_name = document.getElementById('last_name').value;
   const email = document.getElementById('email').value;
   const password = document.getElementById('password').value;
+  const confirmPassword = document.getElementById('confirm_password').value;
+
+  if (password !== confirmPassword) {
+    errorMessage.textContent = 'Passwords do not match.';
+    errorMessage.style.display = 'block';
+    return;
+  }
 
   console.log({first_name, last_name, email, password});
   try {
