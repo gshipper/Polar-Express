@@ -75,37 +75,7 @@ document.getElementById("scheduleButton").addEventListener("click", function () 
 
   // If validation passes, proceed with scheduling
   if (isValid) {
-    document.getElementById("rideDetails").classList.remove("hidden");
-    document.getElementById("displayPickup").textContent = pickupInput;
-    document.getElementById("displayDropoff").textContent = dropoffInput;
-    document.getElementById("displayDate").textContent = dateInput;
-    document.getElementById("displayTime").textContent = timeInput;
-    document.getElementById("displayPassengers").textContent = passengers;
-  }
-});
 
-// Reset button functionality
-document.getElementById('reset-button').addEventListener('click', () => {
-  document.getElementById('rideForm').reset();
-  document.getElementById('rideDetails').classList.add('hidden');
-  document.getElementById("pickupError").textContent = "";
-  document.getElementById("dropoffError").textContent = "";
-  document.getElementById("dateError").textContent = "";
-  document.getElementById("passengersError").textContent = "";
-  document.getElementById("timeError").textContent = "";
-});
-
-document.getElementById('scheduleButton').addEventListener('click', () => {
-
-  const pickupLocation = document.getElementById('pickup').value;
-  const dropoffLocation = document.getElementById('dropoff').value;
-
-  // Validation: Ensure pickup and dropoff locations are not the same
-  if (pickupLocation === dropoffLocation) {
-      alert('Pickup and dropoff locations cannot be the same.');
-      return; // Stop execution if validation fails
-  }
-   
     // Making sure that the user is logged in and extracting their email for their user id
     const email = localStorage.getItem('email');
     const userid = email.split('@')[0];
@@ -114,8 +84,8 @@ document.getElementById('scheduleButton').addEventListener('click', () => {
     // Creating the ride data object
     const rideData = {
       user_id: userid,
-      pickup_location: pickupLocation,
-      dropoff_location: dropoffLocation,
+      pickup_location: pickupInput,
+      dropoff_location: dropoffInput,
       ride_date: document.getElementById('date').value,
       ride_time: document.getElementById('time').value,
       passengers: document.getElementById('passengers').value,
@@ -140,7 +110,25 @@ document.getElementById('scheduleButton').addEventListener('click', () => {
         console.error('Error:', error);
         alert('An error occurred. Please try again.');
       });
-  
+    
+    document.getElementById("rideDetails").classList.remove("hidden");
+    document.getElementById("displayPickup").textContent = pickupInput;
+    document.getElementById("displayDropoff").textContent = dropoffInput;
+    document.getElementById("displayDate").textContent = dateInput;
+    document.getElementById("displayTime").textContent = timeInput;
+    document.getElementById("displayPassengers").textContent = passengers;
+  }
+});
+
+// Reset button functionality
+document.getElementById('reset-button').addEventListener('click', () => {
+  document.getElementById('rideForm').reset();
+  document.getElementById('rideDetails').classList.add('hidden');
+  document.getElementById("pickupError").textContent = "";
+  document.getElementById("dropoffError").textContent = "";
+  document.getElementById("dateError").textContent = "";
+  document.getElementById("passengersError").textContent = "";
+  document.getElementById("timeError").textContent = "";
 });
 
 window.onload = initAutocomplete;
