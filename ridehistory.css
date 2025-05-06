@@ -1,0 +1,100 @@
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .container {
+    max-width: 600px;
+    margin: 60px auto;
+    background: #4c4949;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+    padding-top: 50px; 
+  }
+  .home-button {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    z-index: 10;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    
+  }
+  
+  button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #1e1e1e;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #000000;
+  }
+
+  .title-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 50px; 
+  }
+  
+  .title-row h1 {
+    margin: 0;
+  }
+  
+  .logo-image {
+    width: 100px; 
+    height: auto;
+  }
+
+  #rebook-button{
+    margin-top: 1px;
+    padding: 10px;
+    font-size: 16px;
+    background-color: #1e1e1e;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  #rebook-button:hover {
+    background-color: #000000;
+  }
+
+  .table-wrapper {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .ride-table {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    padding: 10px;
+    margin: 20px;
+    border-collapse: collapse;
+    border: 2px solid #211e1e;
+  }
+
+  .ride-table th {
+    padding: 10px;
+    border: 2px solid #211e1e;
+  }
+
+  .ride-table td {
+    padding: 5px;
+    border: 2px solid #211e1e;
+    text-align: center;
+  }
+  
