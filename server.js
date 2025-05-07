@@ -3,6 +3,9 @@ const express = require('express');
 const mysql = require('mysql2');
 const cors = require('cors');
 const db = require('./db');
+const path = require('path');
+
+
 const authRoutes = require('./authroutes');
 
 // Using Express to create a server
@@ -35,7 +38,7 @@ app.get('/api/user', (req, res) => {
   
     const selectQuery = `
       SELECT user_id FROM users WHERE email = ?
-    `;
+    `;x
   
     db.query(selectQuery, [email], (err, results) => {
       if (err) {
@@ -80,3 +83,29 @@ app.post('/api/rides', (req, res) => {
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
 });
+
+app.use('/calendar', express.static(path.join(__dirname, 'build')));
+
+app.get('/calendar', (req, res) => {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
+
+// Connect to your rides database
+const connection = mysql.createConnection({
+  host: 'localhost',
+  user: 'root',
+  password: 'Babygabo1231$',
+  database: 'polarExpress' // or whatever your DB is called
+});
+
+// API endpoint to get rides
+app.get('/api/rides', (req, res) => {
+  connection.query('SELECT * FROM rides', (err, results) => {
+    if (err) {
+      console.error('Database error:', err);
+      return res.status(500).send('Error retrieving rides');
+    }
+    res.json(results); // send ride data to frontend
+  });
+});
+
