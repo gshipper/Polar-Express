@@ -3,10 +3,10 @@ function areAllFieldsEmpty(form) {
     for (let i = 0; i < form.elements.length; i++) {
         const input = form.elements[i];
         if (input.tagName === 'INPUT' && input.type !== 'button' && input.value.trim() !== '') {
-            return false; // At least one field is not empty
+            return false;
         }
     }
-    return true; // All fields are empty
+    return true; 
 }
 
 // Get the form and submit button elements
@@ -14,6 +14,7 @@ const form = document.getElementById('profileForm');
 const submitButton = document.getElementById('submit-button');
 
 if (form && submitButton) {
+    
     // Add an input event listener to the form
     form.addEventListener('input', function () {
         submitButton.disabled = areAllFieldsEmpty(form);

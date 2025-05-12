@@ -95,7 +95,7 @@ const connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
   password: 'Babygabo1231$',
-  database: 'polarExpress' // or whatever your DB is called
+  database: 'polarExpress'
 });
 
 // API endpoint to get rides
@@ -105,7 +105,7 @@ app.get('/api/rides', (req, res) => {
       console.error('Database error:', err);
       return res.status(500).send('Error retrieving rides');
     }
-    res.json(results); // send ride data to frontend
+    res.json(results);
   });
 });
 
