@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Upcoming Rides - Polar Express</title>
+  <link rel="stylesheet" href="upcomingrides.css">
+</head>
+<body>
+    <div class="container">
+    <div class = "home-button">
+      <button onclick="location.href='dashboard.html'">Back</button>
+    </div>
+    <div class="title-row">
+      <img src="https://upload.wikimedia.org/wikipedia/en/thumb/0/07/Bowdoin_Polar_Bears_Logo.svg/1200px-Bowdoin_Polar_Bears_Logo.svg.png" alt="Left Image" class="logo-image">
+      <h1>Upcoming Rides</h1>
+      <img src="https://upload.wikimedia.org/wikipedia/en/thumb/0/07/Bowdoin_Polar_Bears_Logo.svg/1200px-Bowdoin_Polar_Bears_Logo.svg.png" alt="Right Image" class="logo-image">
+    </div>
+    <div class="table-wrapper">
+        <table class="ride-table">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Time</th>
+              <th>Pickup</th>
+              <th>Dropoff</th>
+              <th>Edit Ride Details</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>2025-05-04</td>
+              <td>1:30pm</td>
+              <td>Moulton Circle</td>
+              <td>Kume</td>
+              <td><button id="edit-button" type="button">Edit</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <script src="upcomingrides.js"></script>
+</body>
+</html>
