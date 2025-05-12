@@ -51,6 +51,7 @@ body {
   
   .title-row h1 {
     margin: 0;
+    color:#ffffff;
   }
   
   .logo-image {
@@ -92,7 +93,7 @@ body {
     border-radius: 4px;
   }
   
-  .submit-button {
+  #submit-button {
     width: 100%;
     padding: 10px;
     background-color: #0077cc;
